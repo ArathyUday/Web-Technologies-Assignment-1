@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <link rel="stylesheet" href="style.css">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <title>
+        Details Form
+    </title>
+
+</head>
+<body>
+    <br>
+    <center><h1>Fill the form</h1></center>
+    <pre>
+            <font size="6">Name:</font> <input style="align-self: center; width: 200px; margin-top: 80px; margin-left: 100px;" placeholder="Enter your name" id="name" type="text">
+            <font size="6">Address:</font> <input style="align-self: center; width: 200px; margin-top: 70px; margin-left: 55px;" placeholder="Enter your Address" id="address" type="text"><br><br>
+                <button style="align-self: center; margin-top: 20px; width: 150px; height: 30px; margin-left: 138px; background-color: pink ; font: bold">ADD DETAILS</button>
+    </pre>
+
+            <script>
+
+                var sock = new WebSocket("ws://localhost:5000");
+
+
+                sock.onopen = function(){
+                    alert("Connected")
+
+                }
+
+
+
+            document.querySelector('button').onclick = function(){
+
+            var name = document.getElementById('name').value;
+            var address = document.getElementById('address').value;
+            sock.send(JSON.stringify({
+                 type: name,
+                 data: address
+            }));
+        }
+            </script>
+</body></html>
